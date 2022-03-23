@@ -8,7 +8,6 @@ import os
 import time
 nbm = dict.fromkeys(range(0x10000, sys.maxunicode + 1), '') # non_bmp_map
 import re
-p = re.compile(r"<[^>]*?>")
 
 API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
@@ -24,9 +23,9 @@ csv_charset = "utf-8"
 webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
 
 def cleanhtml(raw_html):
-  cleanr = re.compile('<.*?>')
-  cleantext = re.sub(cleanr, '', raw_html)
-  return cleantext
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', raw_html)
+    return cleantext
 
 def pushToDiscord(sname,tweetid,icon):
     main_content = {
@@ -98,6 +97,7 @@ def main():
         df_out = df_out.drop_duplicates(['tweetId'])
         df_out.to_csv(csv_path, encoding=csv_charset, index=None)
 
-main()
-endtime = datetime.datetime.now()
-print('%s done' % endtime)
+if __name__ == "__main__":
+    main()
+    endtime = datetime.datetime.now()
+    print('%s done' % endtime)
