@@ -17,7 +17,8 @@ ACCESS_SECRET = os.getenv('ACCESS_SECRET')
 url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 params ={'user_id' : sys.argv[1]}
 
-csv_path = "%s/csv/%s.csv" % (os.path.dirname(os.path.abspath(__file__)), sys.argv[1])
+dir_path = os.path.dirname(os.path.abspath(__file__))
+csv_path = "%s/csv/%s.csv" % (dir_path, sys.argv[1])
 csv_charset = "utf-8"
 
 webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
@@ -86,6 +87,7 @@ def get_tweets():
 
 
 def main():
+    os.makedirs("%s/csv" % dir_path, exist_ok=True)
     arr = get_tweets()
     df = pd.DataFrame(arr, columns=['time','localTime','tweetId','userId','screenName','userName','source','text', 'geo', 'coordinates', 'place', 'userloc', 'userdes', 'userurl', 'userprotect', 'followers', 'follows', 'lists', 'created_at', 'favourites', 'tweets_counts','profile_image', 'profile_background'])
 
