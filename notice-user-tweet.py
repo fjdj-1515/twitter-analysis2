@@ -10,18 +10,15 @@ nbm = dict.fromkeys(range(0x10000, sys.maxunicode + 1), '') # non_bmp_map
 import re
 p = re.compile(r"<[^>]*?>")
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 API_KEY = os.getenv('API_KEY')
 API_SECRET = os.getenv('API_SECRET')
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 ACCESS_SECRET = os.getenv('ACCESS_SECRET')
-print(os.getcwd())
 
 url = "https://api.twitter.com/1.1/statuses/user_timeline.json"
 params ={'user_id' : sys.argv[1]}
 
-csv_path = "%s/csv/%s.csv" % (os.getenv('FOLDER_PASS'), sys.argv[1])
+csv_path = "%s/csv/%s.csv" % (os.path.dirname(os.path.abspath(__file__)), sys.argv[1])
 csv_charset = "utf-8"
 
 webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
