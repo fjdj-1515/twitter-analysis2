@@ -1,7 +1,7 @@
 # twitter-analysis2
 
 6秒おきに特定のTwitterアカウントのツイートを監視し、
-新たなツイートがあればDiscordに投稿するプログラム
+新規ツイートをDiscordに投稿するプログラム
 
 ## Installation
 
